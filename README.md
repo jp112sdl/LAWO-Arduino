@@ -1,6 +1,8 @@
 # LAWO-FlipDot
 Arduino library for LAWO XY5 flipdot displays (also for GORBA and other FP2800 based flipdot displays)
 
+<img src="https://raw.githubusercontent.com/jp112sdl/LAWO-FlipDot/master/images/LAWO_ESP32.png" width=600 />
+
 ### BOM (mostly from reichelt.de)
 
 
