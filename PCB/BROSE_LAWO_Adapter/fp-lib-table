@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name Connect)(type KiCad)(uri /Users/pechj/Documents/Arduino/ECHT-Einsatz/LAWO-Arduino/PCB/additional/Connect.pretty)(options "")(descr ""))
+)
