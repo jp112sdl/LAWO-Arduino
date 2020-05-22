@@ -24,8 +24,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 
-#include "src/panels/LAWO_Matrix_Side.h"
-#include "src/LAWO_Control.h"
+#include "LAWO_Matrix_Side.h"
+#include "LAWO_Control.h"
 
 /*
  * PIN DECLARATIONS

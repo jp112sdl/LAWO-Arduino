@@ -179,7 +179,7 @@ private:
   }
 
   void setPixelPhysical() {
-    unsigned long start = millis();
+    //unsigned long start = millis();
     for (uint8_t c = 0; c < MATRIX_WIDTH; c++) {
       for (uint8_t r = 0; r < MATRIX_HEIGHT; r++) {
         bool currentPixelState = bitRead(PixelState[c], r);
@@ -195,7 +195,7 @@ private:
       }
     }
     deselect();
-    Serial.print("setPixelPhysical():");Serial.print(millis() - start,DEC);Serial.println("ms");
+    //Serial.print("setPixelPhysical():");Serial.print(millis() - start,DEC);Serial.println("ms");
   }
 
   void setPixel(byte colIndex, byte rowIndex, bool state) {
@@ -206,14 +206,14 @@ private:
     flipSpeedFactor = s;
   }
 
-  void drawLineV(uint8_t col, uint8_t row, uint8_t width, bool state) {
+  void drawLineH(uint8_t col, uint8_t row, uint8_t width, bool state) {
     //Serial.print("drawLineV col: "); Serial.print(col, DEC);Serial.print(", row: ");Serial.print(row, DEC);Serial.print(", width: ");Serial.println(width);
     for (uint8_t i = 0; i < width; i++) {
       setPixel(col+i, row, state);
     }
   }
 
-  void drawLineH(uint8_t col, uint8_t row, uint8_t height, bool state) {
+  void drawLineV(uint8_t col, uint8_t row, uint8_t height, bool state) {
     //Serial.print("drawLineH col: "); Serial.print(col, DEC);Serial.print(", row: ");Serial.print(row, DEC);Serial.print(", height: ");Serial.println(height);
     for (uint8_t i = 0; i < height; i++) {
       setPixel(col, row + i, state);
@@ -259,7 +259,7 @@ private:
     }
   }
 
-  void drawBitmap(uint8_t IconIndex, uint8_t col_offset, uint8_t row_offset, bool state, bool invert, bool disable) {
+  void drawBitmap(uint8_t IconIndex, uint8_t col_offset, uint8_t row_offset, bool state, bool invert) {
     //The first half of the icon bytes (i.e. byte 0...23 for an icon width of 24px (which has total 48 Bytes) represent the upper 8 rows
     //The second half of the icon bytes (24...47) represent the lower 8 rows
     uint8_t iconWidth = Icons[IconIndex].width;
@@ -276,19 +276,17 @@ private:
         byte data = pgm_read_byte(&icondata[i]);
         bool bit = bitRead(data, j) == invert ? 1 : 0;
         if (bit)
-         drawPixel(i+col_offset, j + row_offset, state, false);
+         drawPixel(i+col_offset, j + row_offset, state);
        if (iconHeight > 8) {
           //Rows 8 - 15
           data = pgm_read_byte(&icondata[i+iconWidth]);
           bit = bitRead(data, j) == invert ? 1 : 0;
           if (bit)
-            drawPixel(i+col_offset, j + row_offset + rowscan, state, false);
+            drawPixel(i+col_offset, j + row_offset + rowscan, state);
         }
      }
 
     }
-
-   if (disable) deselect();
   }
 
 public:
@@ -347,9 +345,8 @@ public:
     memset(NextPixelState, 0xffff, MATRIX_WIDTH * sizeof(uint16_t));
   }
 
-  void drawPixel(uint8_t col, uint8_t row, bool state, bool disable = true) {
+  void drawPixel(uint8_t col, uint8_t row, bool state = YELLOW) {
     setPixel(col, row, state);
-    if (disable) deselect();
   }
   
   void repairPixel(uint8_t col, uint8_t row) {
@@ -377,10 +374,12 @@ public:
 
     //Serial.print("charWidth = ");Serial.println(charWidth, DEC);
 
-    for (uint8_t col = 0 ; col < charWidth; col++) {
-      for (uint8_t row = 0; row < 8; row++) {
 
-        bool bit = bitRead(doubleHeight ? dBuf[col] : cBuf[col], row);
+
+    for (uint8_t col = 0 ; col < charWidth; col++) {
+      for (uint8_t row = 0; row < (lawoFont._fontInfo.height <= 8 ? lawoFont._fontInfo.height : 8); row++) {
+
+        bool bit = bitRead(doubleHeight ? dBuf[col] : cBuf[col], lawoFont._fontInfo.mirror ?  lawoFont._fontInfo.height - row - 1 : row);
         if (bit) {
           setPixel(col + col_offset, row + row_offset, (bit == state));
         }
@@ -393,8 +392,6 @@ public:
         }
       }
     }
-
-    deselect();
 
     return charWidth;
   }
@@ -411,35 +408,34 @@ public:
       charPos += charSpacing;
     }
   }
-
-  void print(byte X, byte Y, String Text, bool state, uint8_t charSpacing = 1) {
-    print(X, Y, Text.c_str(), state, charSpacing);
+  
+  void print(byte X, byte Y, String Text) {
+    print(X, Y, Text.c_str());
   }
+
 
   void setFont(LawoFont::fontType_t *f) {
     lawoFont.setFont(f);
   }
 
-  uint8_t getCenterPos(const char * Text, uint8_t w) {
+  uint8_t getCenterPos(const char * Text, uint8_t w = MATRIX_WIDTH) {
     return lawoFont.getCenterPos(Text, w);
   }
 
-  void drawRect(uint8_t col, uint8_t row,  uint8_t width, uint8_t height, bool state, bool disable = true) {
+  void drawRect(uint8_t col, uint8_t row,  uint8_t width, uint8_t height, bool state = YELLOW) {
     drawLineV(col, row,          width, state);
     drawLineV(col, row + height - 1, width, state);
     drawLineH(col,             row, height-1, state);
     drawLineH(col + width -1 , row, height-1, state);
-    if (disable) deselect();
   }
 
-  void fillRect(uint8_t col, uint8_t row,  uint8_t width, uint8_t height, bool state, bool disable = true) {
+  void fillRect(uint8_t col, uint8_t row,  uint8_t width, uint8_t height, bool state = YELLOW) {
     for (uint8_t i = 0; i < width; i++) {
       drawLineH(col+i, row, height, state);
     }
-    if (disable) deselect();
   }
 
-  void drawLine(uint8_t x0, uint8_t y0,  uint8_t x1, uint8_t y1, bool state, bool disable = true) {
+  void drawLine(uint8_t x0, uint8_t y0,  uint8_t x1, uint8_t y1, bool state = YELLOW) {
     if (x0 == x1) {
       if (y0 > y1)
         _swap_int16_t(y0, y1);
@@ -451,18 +447,42 @@ public:
     } else {
       writeLine(x0, y0, x1, y1, state);
     }
-    if (disable) deselect();
   }
 
-  void drawIcon(uint8_t IconIndex, uint8_t col_offset, uint8_t row_offset, bool state) {
-    drawBitmap(IconIndex, col_offset, row_offset, state, false, true);
+  void drawIcon(uint8_t IconIndex, uint8_t col_offset, uint8_t row_offset, bool state = YELLOW) {
+    drawBitmap(IconIndex, col_offset, row_offset, state, false);
   }
 
-  void drawIconInvert(uint8_t IconIndex, uint8_t col_offset, uint8_t row_offset, bool state) {
-    drawBitmap(IconIndex, col_offset, row_offset, state, true, true);
+  void drawIcon(const uint8_t *icondata, uint8_t iconWidth, uint8_t iconHeight, uint8_t col_offset, uint8_t row_offset, bool state, bool invert) {
+    //The first half of the icon bytes (i.e. byte 0...23 for an icon width of 24px (which has total 48 Bytes) represent the upper 8 rows
+    //The second half of the icon bytes (24...47) represent the lower 8 rows
+    for (uint8_t i = 0 ; i < iconWidth; i++) {
+
+      uint8_t rowscan = 8;
+      if (iconHeight > 8) rowscan = iconHeight / 2;
+
+      for (uint8_t j = 0; j < rowscan; j++) {
+        //Rows 0 - 7
+        byte data = pgm_read_byte(&icondata[i]);
+        bool bit = bitRead(data, j) == invert ? 1 : 0;
+        if (bit)
+         drawPixel(i+col_offset, j + row_offset, state);
+       if (iconHeight > 8) {
+          //Rows 8 - 15
+          data = pgm_read_byte(&icondata[i+iconWidth]);
+          bit = bitRead(data, j) == invert ? 1 : 0;
+          if (bit)
+            drawPixel(i+col_offset, j + row_offset + rowscan, state);
+        }
+     }
+    }
   }
 
-  void drawCircle(int16_t x0, int16_t y0, int16_t r, bool state) {
+  void drawIconInvert(uint8_t IconIndex, uint8_t col_offset, uint8_t row_offset, bool state = YELLOW) {
+    drawBitmap(IconIndex, col_offset, row_offset, state, true);
+  }
+
+  void drawCircle(int16_t x0, int16_t y0, int16_t r, bool state = YELLOW) {
     int16_t f = 1 - r;
     int16_t ddF_x = 1;
     int16_t ddF_y = -2 * r;
@@ -501,7 +521,7 @@ public:
     for (uint8_t c = 0; c < MATRIX_WIDTH - 1; c++) {
       temp[c+1] = PixelState[c];
     }
-    drawPixMap(temp);
+    setPixelMap(temp);
   }
 
   void moveLeft(bool invert = false) {
@@ -510,7 +530,7 @@ public:
     for (uint8_t c = 0; c < MATRIX_WIDTH - 1; c++) {
       temp[c] = PixelState[c+1];
     }
-    drawPixMap(temp);
+    setPixelMap(temp);
   }
 
   void moveUp(bool invert = false) {
@@ -519,7 +539,7 @@ public:
       temp[c] = PixelState[c] >> 1;
       if (invert) bitSet(temp[c],15);
     }
-    drawPixMap(temp);
+    setPixelMap(temp);
   }
 
   void moveDown(bool invert = false) {
@@ -528,7 +548,7 @@ public:
       temp[c] = PixelState[c] << 1;
       if (invert) bitSet(temp[c],0);
     }
-    drawPixMap(temp);
+    setPixelMap(temp);
   }
 
   bool getPixelState(uint8_t col, uint8_t row) {
@@ -599,7 +619,7 @@ public:
     }
   }
 
-  void drawPixMap(uint16_t srcMap[MATRIX_WIDTH]) {
+  void setPixelMap(uint16_t srcMap[MATRIX_WIDTH]) {
     for (uint8_t c = 0; c < MATRIX_WIDTH; c++) {
       for (uint8_t r = 0; r < MATRIX_HEIGHT; r++) {
         bool newPixelState = bitRead(srcMap[c],r);
@@ -610,7 +630,7 @@ public:
         }
       }
     }
-    setPixelPhysical();
+    //setPixelPhysical();
   }
 };
 
