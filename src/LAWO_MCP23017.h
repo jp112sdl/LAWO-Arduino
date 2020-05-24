@@ -22,6 +22,8 @@ template <uint8_t MCP23017_ADDRESS=0x20>
 class MCP23017Type {
 private:
   bool    available        = false;
+  uint8_t currentRegA      = 0x00;
+  uint8_t currentRegB      = 0x00;
 
   bool initWire(uint8_t addr) {
     Wire.beginTransmission(addr);
@@ -52,6 +54,12 @@ private:
     Wire.beginTransmission(MCP23017_ADDRESS);
     Wire.write(regAddr);
     Wire.write(regValue);
+
+    if (regAddr == MCP23017_OLATA)
+      currentRegA = regValue;
+    else if (regAddr == MCP23017_OLATB)
+      currentRegB = regValue;
+
     Wire.endTransmission();
   }
 
@@ -64,7 +72,8 @@ public:
   void writePin(uint8_t pin, uint8_t d) {
     uint8_t bit=pin%8;
     uint8_t regAddr=regForPin(pin,MCP23017_OLATA,MCP23017_OLATB);
-    uint8_t gpio = readRegister(regAddr);
+    //uint8_t gpio = readRegister(regAddr);
+    uint8_t gpio = regAddr == MCP23017_OLATA ? currentRegA : currentRegB;
     bitWrite(gpio,bit,d);
     regAddr=regForPin(pin,MCP23017_GPIOA,MCP23017_GPIOB);
     writeRegister(regAddr,gpio);
@@ -76,6 +85,8 @@ public:
     Wire.write(ba & 0xFF);
     Wire.write(ba >> 8);
     Wire.endTransmission();
+    currentRegA = ba & 0xFF;
+    currentRegB = ba >> 8;
   }
 
   bool init() {
