@@ -379,7 +379,7 @@ public:
     for (uint8_t col = 0 ; col < charWidth; col++) {
       for (uint8_t row = 0; row < (lawoFont._fontInfo.height <= 8 ? lawoFont._fontInfo.height : 8); row++) {
 
-        bool bit = bitRead(doubleHeight ? dBuf[col] : cBuf[col], lawoFont._fontInfo.mirror ?  lawoFont._fontInfo.height - row - 1 : row);
+        bool bit = bitRead(doubleHeight ? dBuf[col] : cBuf[col], row);
         if (bit) {
           setPixel(col + col_offset, row + row_offset, (bit == state));
         }

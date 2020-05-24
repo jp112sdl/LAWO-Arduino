@@ -16,7 +16,6 @@ typedef struct {
      uint16_t firstASCII; // (v1,2) the first character code in the font table
      uint16_t lastASCII;  // (v1,2) the last character code in the font table
      uint16_t dataOffset; // (v1) offset from the start of table to first character definition
-     bool mirror;
    } fontInfo_t;
 
 static fontType_t DefaultFont[] PROGMEM;
@@ -38,7 +37,6 @@ void setFontInfoDefault(void)
   _fontInfo.firstASCII = 0;
   _fontInfo.lastASCII = 255;
   _fontInfo.dataOffset = 0;
-  _fontInfo.mirror = false;
 }
 
 uint8_t getFontWidth(void)
@@ -83,12 +81,6 @@ void loadFontInfo(void) {
     if (c == FONT_FILE_INDICATOR) {
       c = pgm_read_byte(_fontData + offset++);  // read the version number
       switch (c) {
-        case 8:
-          _fontInfo.firstASCII = pgm_read_byte(_fontData + offset++);
-          _fontInfo.lastASCII  = pgm_read_byte(_fontData + offset++);
-          _fontInfo.height     = pgm_read_byte(_fontData + offset++);
-          _fontInfo.mirror     = true;
-        break;
         case 2:
           _fontInfo.firstASCII = (pgm_read_byte(_fontData + offset++) << 8);
           _fontInfo.firstASCII += pgm_read_byte(_fontData + offset++);
@@ -114,9 +106,9 @@ void loadFontInfo(void) {
     // these always set
     _fontInfo.widthMax = getFontWidth();
   }
-  Serial.print(F("_fontInfo.firstASCII = "));Serial.println(_fontInfo.firstASCII, DEC);
-  Serial.print(F("_fontInfo.lastASCII = "));Serial.println(_fontInfo.lastASCII, DEC);
-  Serial.print(F("_fontInfo.height = "));Serial.println(_fontInfo.height, DEC);
+  //Serial.print(F("_fontInfo.firstASCII = "));Serial.println(_fontInfo.firstASCII, DEC);
+  //Serial.print(F("_fontInfo.lastASCII = "));Serial.println(_fontInfo.lastASCII, DEC);
+  //Serial.print(F("_fontInfo.height = "));Serial.println(_fontInfo.height, DEC);
 }
 
 void setFont(fontType_t *f) {
