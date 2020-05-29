@@ -32,6 +32,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "Icons.h"
 #include "Font.h"
 
+#define ADDRESS_ROW_MCP_Y     0x20
+#define ADDRESS_ROW_MCP_B     0x21
+#define ADDR_ROW_MCP_BROSE    0x22
+
 #define FLIP_DURATION       2 // in microseconds
 #define FLIP_PAUSE_DURATION 1 // in microseconds
 
@@ -54,12 +58,15 @@ enum flipspeed {
   }
 #endif
 
-template<uint8_t ADDR_Y, uint8_t ADDR_B, const uint8_t * COLUMN_LINES,const uint8_t * E_LINES,const uint8_t D, const uint8_t MCP_RESET, const uint8_t LED>
+template<const uint8_t * COLUMN_LINES,const uint8_t * E_LINES,const uint8_t D, const uint8_t MCP_RESET = 0, const uint8_t LED = 0>
 class LAWODisplay {
 private:
   LawoFont lawoFont;
-  MCP23017Type<ADDR_Y> ROW_MCP_Y;
-  MCP23017Type<ADDR_B> ROW_MCP_B;
+  MCP23017Type<ADDRESS_ROW_MCP_Y> ROW_MCP_Y;
+  MCP23017Type<ADDRESS_ROW_MCP_B> ROW_MCP_B;
+#ifdef USE_BROSE
+  MCP23017Type<ADDR_ROW_MCP_BROSE> ROW_MCP_BROSE;
+#endif
   uint16_t flipSpeedFactor;
   uint8_t lastColIndex;
   uint8_t lastRowIndex;
@@ -67,29 +74,44 @@ private:
   uint8_t charSpacing;
   bool initOK;
   bool mcp_ok;
-  uint16_t PixelState[MATRIX_WIDTH]; //uint16_t 16bit represent the 16 rows
-  uint16_t NextPixelState[MATRIX_WIDTH]; //uint16_t 16bit represent the 16 rows
+  uint32_t PixelState[MATRIX_WIDTH];     //uint32_t 32bit represent up to 32 rows
+  uint32_t NextPixelState[MATRIX_WIDTH]; //uint32_t 32bit represent up to 32 rows
 private:
   void initPins() {
-    pinMode(MCP_RESET, OUTPUT);
-    for (uint8_t i = 0; i< 5; i++) {
+    if (MCP_RESET != 0)
+      pinMode(MCP_RESET, OUTPUT);
+      
+    for (uint8_t i = 0; i< sizeof(COLUMN_LINES); i++) {
       pinMode(COLUMN_LINES[i], OUTPUT);
-      pinMode(E_LINES[i], OUTPUT);
     }
+    
+    for (uint8_t i = 0; i< sizeof(E_LINES); i++) {
+      pinMode(E_LINES[i], OUTPUT);
+    }    
+    
     pinMode(D, OUTPUT);
-    pinMode(LED, OUTPUT);
+    
+    if (LED != 0)
+      pinMode(LED, OUTPUT);
   }
 
   bool initMCP() {
-    //strobe RESET to reset the chip
-    digitalWrite(MCP_RESET, LOW);
-    delay(2);
-    digitalWrite(MCP_RESET, HIGH);
-    delay(25);
+    if (MCP_RESET != 0) {
+      //strobe RESET to reset the chip
+      digitalWrite(MCP_RESET, LOW);
+      delay(2);
+      digitalWrite(MCP_RESET, HIGH);
+      delay(25);
+    }
     //this initializes the MCP, sets all pins to OUTPUT and puts state LOW
     bool mcp_y_ok = ROW_MCP_Y.init();
     bool mcp_b_ok = ROW_MCP_B.init();
     mcp_ok = (mcp_y_ok && mcp_b_ok) ;
+
+#ifdef USE_BROSE
+    bool mcp_brose_ok = ROW_MCP_BROSE.init();
+    mcp_ok = (mcp_ok && mcp_brose_ok);
+#endif
 
     if (!mcp_ok) {
       Serial.println("Error while initializing MCP23017");
@@ -129,16 +151,27 @@ private:
   }
 
   void selectRow(byte rowIndex, bool yellow) {
-    if (initOK) {
+    if (initOK && rowIndex < MATRIX_HEIGHT) {
 #ifdef ROW_SWAP
       rowIndex = MATRIX_HEIGHT - rowIndex - 1;
 #endif
       ROW_MCP_Y.writeAll(0);
       ROW_MCP_B.writeAll(0);
-      if (yellow)
-        ROW_MCP_Y.writePin(rowIndex, HIGH);
-      else
-        ROW_MCP_B.writePin(rowIndex, HIGH);
+#ifdef USE_BROSE
+      ROW_MCP_BROSE.writeAll(0);
+#endif
+      if (rowIndex < 16) {
+        if (yellow)
+          ROW_MCP_Y.writePin(rowIndex, HIGH);
+        else
+          ROW_MCP_B.writePin(rowIndex, HIGH);
+      }
+#ifdef USE_BROSE
+      else {
+         uint8_t pin = rowIndex - 16;
+         ROW_MCP_BROSE.writePin(yellow ? pin + 8 : pin , HIGH);
+      }
+#endif
 
       digitalWrite(D, !yellow);
     }
@@ -169,7 +202,9 @@ private:
     if (initOK) {
       ROW_MCP_Y.writeAll(LOW);
       ROW_MCP_B.writeAll(LOW);
-
+#ifdef USE_BROSE
+      ROW_MCP_BROSE.writeAll(LOW);
+#endif
       digitalWrite(COLUMN_LINES[0], LOW);
       digitalWrite(COLUMN_LINES[1], LOW);
       digitalWrite(COLUMN_LINES[2], LOW);
@@ -294,6 +329,7 @@ public:
   virtual ~LAWODisplay() {}
 
   void setLED(bool state) {
+  if (LED != 0)
     digitalWrite(LED, (state == 1) ? LOW : HIGH);
   }
   
@@ -320,7 +356,7 @@ public:
         }
       }
 
-      memset(PixelState, 0xffff, MATRIX_WIDTH * sizeof(uint16_t));
+      memset(PixelState, 0xffffffff, MATRIX_WIDTH * sizeof(uint32_t));
       delay(200);
     }
 
@@ -334,15 +370,15 @@ public:
 
     deselect();
 
-    memset(PixelState, 0, MATRIX_WIDTH * sizeof(uint16_t));
+    memset(PixelState, 0, MATRIX_WIDTH * sizeof(uint32_t));
   }
 
   void black() {
-    memset(NextPixelState, 0, MATRIX_WIDTH * sizeof(uint16_t));
+    memset(NextPixelState, 0, MATRIX_WIDTH * sizeof(uint32_t));
   }
 
   void yellow() {
-    memset(NextPixelState, 0xffff, MATRIX_WIDTH * sizeof(uint16_t));
+    memset(NextPixelState, 0xffffffff, MATRIX_WIDTH * sizeof(uint32_t));
   }
 
   void drawPixel(uint8_t col, uint8_t row, bool state = YELLOW) {
@@ -516,7 +552,7 @@ public:
   }
 
   void moveRight(bool invert = false) {
-    uint16_t temp[MATRIX_WIDTH];
+    uint32_t temp[MATRIX_WIDTH];
     temp[0] = invert ? 0xffff : 0;
     for (uint8_t c = 0; c < MATRIX_WIDTH - 1; c++) {
       temp[c+1] = PixelState[c];
@@ -525,7 +561,7 @@ public:
   }
 
   void moveLeft(bool invert = false) {
-    uint16_t temp[MATRIX_WIDTH];
+    uint32_t temp[MATRIX_WIDTH];
     temp[MATRIX_WIDTH-1] = invert ? 0xffff : 0;
     for (uint8_t c = 0; c < MATRIX_WIDTH - 1; c++) {
       temp[c] = PixelState[c+1];
@@ -534,7 +570,7 @@ public:
   }
 
   void moveUp(bool invert = false) {
-    uint16_t temp[MATRIX_WIDTH];
+    uint32_t temp[MATRIX_WIDTH];
     for (uint8_t c = 0; c < MATRIX_WIDTH; c++) {
       temp[c] = PixelState[c] >> 1;
       if (invert) bitSet(temp[c],15);
@@ -543,7 +579,7 @@ public:
   }
 
   void moveDown(bool invert = false) {
-    uint16_t temp[MATRIX_WIDTH];
+    uint32_t temp[MATRIX_WIDTH];
     for (uint8_t c = 0; c < MATRIX_WIDTH; c++) {
       temp[c] = PixelState[c] << 1;
       if (invert) bitSet(temp[c],0);
@@ -555,7 +591,7 @@ public:
     return bitRead(PixelState[col], row);
   }
 
-  uint16_t getColumn(uint8_t col) {
+  uint32_t getColumn(uint8_t col) {
     return PixelState[col];
   }
 
@@ -568,7 +604,7 @@ public:
     return i;
   }
 
-  void getPixMap(uint16_t dstMap[MATRIX_WIDTH]) {
+  void getPixMap(uint32_t dstMap[MATRIX_WIDTH]) {
     memcpy(dstMap, PixelState, MATRIX_WIDTH);
   }
 
@@ -602,7 +638,7 @@ public:
     return s;
   }
 
-  uint16_t * get_dots() {
+  uint32_t * get_dots() {
     return PixelState;
   }
 
@@ -619,7 +655,7 @@ public:
     }
   }
 
-  void setPixelMap(uint16_t srcMap[MATRIX_WIDTH]) {
+  void setPixelMap(uint32_t srcMap[MATRIX_WIDTH]) {
     for (uint8_t c = 0; c < MATRIX_WIDTH; c++) {
       for (uint8_t r = 0; r < MATRIX_HEIGHT; r++) {
         bool newPixelState = bitRead(srcMap[c],r);
