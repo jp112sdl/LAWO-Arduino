@@ -25,3 +25,5 @@ rescue-backup/
 # Production files
 *.zip
 
+PCB/BROSE_LAWO_Adapter/fp-info-cache
+PCB/LAWO_ESP32/fp-info-cache
