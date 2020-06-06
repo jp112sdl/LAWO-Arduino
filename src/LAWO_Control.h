@@ -80,12 +80,12 @@ private:
   void initPins() {
     if (MCP_RESET != 0)
       pinMode(MCP_RESET, OUTPUT);
-      
-    for (uint8_t i = 0; i< sizeof(COLUMN_LINES); i++) {
+    
+    for (uint8_t i = 0; i < 5; i++) {
       pinMode(COLUMN_LINES[i], OUTPUT);
     }
     
-    for (uint8_t i = 0; i< sizeof(E_LINES); i++) {
+    for (uint8_t i = 0; i< sizeof(PANEL_LINES); i++) {
       pinMode(E_LINES[i], OUTPUT);
     }    
     
@@ -133,6 +133,7 @@ private:
       // In the case of a matrix with a 14-col panel at the end instead of a 28-col one, we need to remember that our panel index is off by half a panel, so flip the MSB
       bool halfPanelOffset = hasHalfPanelOffset(colIndex);
 
+
       // Additionally, the address needs to be reversed because of how the panels are connected
       colIndex = MATRIX_WIDTH - colIndex - 1;
 
@@ -147,6 +148,7 @@ private:
       digitalWrite(COLUMN_LINES[2], address & 4);
       digitalWrite(COLUMN_LINES[3], address & 8);
       digitalWrite(COLUMN_LINES[4], halfPanelOffset ? !(address & 16) : address & 16);
+
     }
   }
 
