@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define ADDRESS_ROW_MCP_Y     0x20
 #define ADDRESS_ROW_MCP_B     0x21
-#define ADDR_ROW_MCP_BROSE    0x22
+#define ADDR_ROW_MCP_BROSE    0x23
 
 #define FLIP_DURATION       2 // in microseconds
 #define FLIP_PAUSE_DURATION 1 // in microseconds
