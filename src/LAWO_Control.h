@@ -202,16 +202,17 @@ private:
 
   void deselect() {
     if (initOK) {
-      ROW_MCP_Y.writeAll(LOW);
-      ROW_MCP_B.writeAll(LOW);
-#ifdef USE_BROSE
-      ROW_MCP_BROSE.writeAll(LOW);
-#endif
       digitalWrite(COLUMN_LINES[0], LOW);
       digitalWrite(COLUMN_LINES[1], LOW);
       digitalWrite(COLUMN_LINES[2], LOW);
       digitalWrite(COLUMN_LINES[3], LOW);
       digitalWrite(COLUMN_LINES[4], LOW);
+
+      ROW_MCP_Y.writeAll(LOW);
+      ROW_MCP_B.writeAll(LOW);
+#ifdef USE_BROSE
+      ROW_MCP_BROSE.writeAll(LOW);
+#endif
     }
   }
 

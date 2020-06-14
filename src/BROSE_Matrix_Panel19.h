@@ -15,6 +15,6 @@ bool hasHalfPanelOffset(__attribute__((unused)) byte colIndex) {
    * Determine if the given column index belongs to a panel which was preceded by a 14-col half panel.
    */
 
-  return false;
+  return true;
 }
 #endif
