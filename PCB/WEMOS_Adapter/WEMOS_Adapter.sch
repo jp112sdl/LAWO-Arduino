@@ -1,0 +1,202 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L wemos_mini:WeMos_D1_mini U1
+U 1 1 5EE72A9E
+P 4880 2670
+F 0 "U1" H 4880 3413 60  0000 C CNN
+F 1 "WeMos_D1_mini" H 4880 3307 60  0000 C CNN
+F 2 "wemos-d1-mini:wemos-d1-mini-connectors-only" H 5430 1970 60  0001 C CNN
+F 3 "" H 4880 3201 60  0001 C CNN
+	1    4880 2670
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x19 J1
+U 1 1 5EE8C4DA
+P 3790 2800
+F 0 "J1" H 3708 3917 50  0000 C CNN
+F 1 "Conn_01x19" H 3708 3826 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x19_P2.54mm_Vertical" H 3790 2800 50  0001 C CNN
+F 3 "~" H 3790 2800 50  0001 C CNN
+	1    3790 2800
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x19 J2
+U 1 1 5EE8EBD0
+P 5970 2780
+F 0 "J2" H 6050 2822 50  0000 L CNN
+F 1 "Conn_01x19" H 6050 2731 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x19_P2.54mm_Vertical" H 5970 2780 50  0001 C CNN
+F 3 "~" H 5970 2780 50  0001 C CNN
+	1    5970 2780
+	1    0    0    -1  
+$EndComp
+NoConn ~ 4380 2320
+NoConn ~ 5380 2320
+Wire Wire Line
+	5770 1880 5620 1880
+Wire Wire Line
+	5550 1880 5550 2920
+Wire Wire Line
+	5550 2920 5380 2920
+Wire Wire Line
+	3990 3700 4600 3700
+Wire Wire Line
+	5430 3700 5430 3020
+Wire Wire Line
+	5430 3020 5380 3020
+NoConn ~ 4380 3020
+Wire Wire Line
+	3990 2300 4140 2300
+Wire Wire Line
+	4140 2300 4140 2420
+Wire Wire Line
+	4140 2420 4380 2420
+Wire Wire Line
+	5380 2420 5650 2420
+Wire Wire Line
+	5650 2420 5650 2780
+Wire Wire Line
+	5650 2780 5770 2780
+Wire Wire Line
+	5380 2520 5720 2520
+Wire Wire Line
+	5720 2520 5720 2080
+Wire Wire Line
+	5720 2080 5770 2080
+Wire Wire Line
+	5380 2620 5670 2620
+Wire Wire Line
+	5670 2620 5670 2380
+Wire Wire Line
+	5670 2380 5770 2380
+NoConn ~ 3990 1900
+NoConn ~ 3990 2000
+NoConn ~ 3990 2100
+NoConn ~ 3990 2200
+NoConn ~ 3990 2400
+Wire Wire Line
+	4380 2720 4220 2720
+Wire Wire Line
+	4220 2720 4220 3400
+Wire Wire Line
+	4220 3400 5580 3400
+Wire Wire Line
+	5580 3400 5580 2680
+Wire Wire Line
+	5580 2680 5770 2680
+Wire Wire Line
+	5770 2580 5470 2580
+Wire Wire Line
+	5470 2580 5470 2820
+Wire Wire Line
+	5470 2820 5380 2820
+Wire Wire Line
+	5770 2980 5490 2980
+Wire Wire Line
+	5490 2980 5490 3520
+Wire Wire Line
+	5490 3520 4170 3520
+Wire Wire Line
+	4170 3520 4170 2620
+Wire Wire Line
+	4170 2620 4380 2620
+NoConn ~ 5770 3680
+NoConn ~ 5770 3580
+NoConn ~ 5770 3480
+NoConn ~ 5770 3380
+NoConn ~ 5770 3180
+NoConn ~ 5770 3080
+NoConn ~ 5770 2880
+NoConn ~ 5770 1980
+NoConn ~ 5770 2180
+NoConn ~ 5770 2280
+NoConn ~ 5770 2480
+NoConn ~ 3990 2800
+NoConn ~ 3990 2900
+NoConn ~ 3990 3000
+NoConn ~ 3990 3100
+NoConn ~ 3990 3200
+NoConn ~ 3990 3300
+NoConn ~ 3990 3400
+NoConn ~ 3990 3500
+NoConn ~ 3990 3600
+Wire Wire Line
+	3990 2600 4080 2600
+Wire Wire Line
+	4080 2600 4080 2820
+Wire Wire Line
+	4080 2820 4380 2820
+Wire Wire Line
+	3990 2700 4050 2700
+Wire Wire Line
+	4050 2700 4050 2920
+Wire Wire Line
+	4050 2920 4380 2920
+Wire Wire Line
+	3990 2500 4220 2500
+Wire Wire Line
+	4220 2500 4220 2520
+Wire Wire Line
+	4220 2520 4380 2520
+Wire Wire Line
+	5380 2720 5620 2720
+Wire Wire Line
+	5620 2720 5620 3280
+Wire Wire Line
+	5620 3280 5770 3280
+$Comp
+L power:PWR_FLAG #FLG0101
+U 1 1 5EEA3D8E
+P 4600 3700
+F 0 "#FLG0101" H 4600 3775 50  0001 C CNN
+F 1 "PWR_FLAG" H 4600 3873 50  0000 C CNN
+F 2 "" H 4600 3700 50  0001 C CNN
+F 3 "~" H 4600 3700 50  0001 C CNN
+	1    4600 3700
+	-1   0    0    1   
+$EndComp
+Connection ~ 4600 3700
+Wire Wire Line
+	4600 3700 5430 3700
+$Comp
+L power:PWR_FLAG #FLG0102
+U 1 1 5EEA474A
+P 5620 1880
+F 0 "#FLG0102" H 5620 1955 50  0001 C CNN
+F 1 "PWR_FLAG" H 5620 2053 50  0000 C CNN
+F 2 "" H 5620 1880 50  0001 C CNN
+F 3 "~" H 5620 1880 50  0001 C CNN
+	1    5620 1880
+	1    0    0    -1  
+$EndComp
+Connection ~ 5620 1880
+Wire Wire Line
+	5620 1880 5550 1880
+$Comp
+L power:GND #PWR01
+U 1 1 5EEC00D2
+P 5620 1880
+F 0 "#PWR01" H 5620 1630 50  0001 C CNN
+F 1 "GND" H 5625 1707 50  0000 C CNN
+F 2 "" H 5620 1880 50  0001 C CNN
+F 3 "" H 5620 1880 50  0001 C CNN
+	1    5620 1880
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC
