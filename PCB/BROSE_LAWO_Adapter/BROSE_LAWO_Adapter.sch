@@ -14,175 +14,175 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Connector_Generic:Conn_02x25_Odd_Even J3
+L Connector_Generic:Conn_02x25_Odd_Even J1
 U 1 1 5EABA565
-P 9720 4890
-F 0 "J3" H 9770 6307 50  0000 C CNN
-F 1 "LAWO Controller" H 9770 6216 50  0000 C CNN
-F 2 "Connector_IDC:IDC-Header_2x25_P2.54mm_Vertical" H 9720 4890 50  0001 C CNN
-F 3 "~" H 9720 4890 50  0001 C CNN
-	1    9720 4890
+P 9650 5150
+F 0 "J1" H 9700 6567 50  0000 C CNN
+F 1 "LAWO Controller" H 9700 6476 50  0000 C CNN
+F 2 "Connector_IDC:IDC-Header_2x25_P2.54mm_Vertical" H 9650 5150 50  0001 C CNN
+F 3 "~" H 9650 5150 50  0001 C CNN
+	1    9650 5150
 	1    0    0    -1  
 $EndComp
-Text Label 9520 3690 2    50   ~ 0
+Text Label 9450 3950 2    50   ~ 0
 VS
-Text Label 10020 3690 0    50   ~ 0
+Text Label 9950 3950 0    50   ~ 0
 VS
 $Comp
 L power:GND #PWR013
 U 1 1 5EAC2ED9
-P 10370 3790
-F 0 "#PWR013" H 10370 3540 50  0001 C CNN
-F 1 "GND" H 10375 3617 50  0000 C CNN
-F 2 "" H 10370 3790 50  0001 C CNN
-F 3 "" H 10370 3790 50  0001 C CNN
-	1    10370 3790
+P 10300 4050
+F 0 "#PWR013" H 10300 3800 50  0001 C CNN
+F 1 "GND" H 10305 3877 50  0000 C CNN
+F 2 "" H 10300 4050 50  0001 C CNN
+F 3 "" H 10300 4050 50  0001 C CNN
+	1    10300 4050
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	10020 3790 10370 3790
+	9950 4050 10300 4050
 $Comp
 L power:+5V #PWR09
 U 1 1 5EAC671D
-P 9520 3890
-F 0 "#PWR09" H 9520 3740 50  0001 C CNN
-F 1 "+5V" V 9535 4018 50  0000 L CNN
-F 2 "" H 9520 3890 50  0001 C CNN
-F 3 "" H 9520 3890 50  0001 C CNN
-	1    9520 3890
+P 9450 4150
+F 0 "#PWR09" H 9450 4000 50  0001 C CNN
+F 1 "+5V" V 9465 4278 50  0000 L CNN
+F 2 "" H 9450 4150 50  0001 C CNN
+F 3 "" H 9450 4150 50  0001 C CNN
+	1    9450 4150
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	9290 3790 9520 3790
+	9220 4050 9450 4050
 $Comp
 L power:GND #PWR08
 U 1 1 5EAC1E90
-P 9290 3790
-F 0 "#PWR08" H 9290 3540 50  0001 C CNN
-F 1 "GND" H 9295 3617 50  0000 C CNN
-F 2 "" H 9290 3790 50  0001 C CNN
-F 3 "" H 9290 3790 50  0001 C CNN
-	1    9290 3790
+P 9220 4050
+F 0 "#PWR08" H 9220 3800 50  0001 C CNN
+F 1 "GND" H 9225 3877 50  0000 C CNN
+F 2 "" H 9220 4050 50  0001 C CNN
+F 3 "" H 9220 4050 50  0001 C CNN
+	1    9220 4050
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:+5V #PWR012
 U 1 1 5EAC7D47
-P 10020 3890
-F 0 "#PWR012" H 10020 3740 50  0001 C CNN
-F 1 "+5V" V 10035 4018 50  0000 L CNN
-F 2 "" H 10020 3890 50  0001 C CNN
-F 3 "" H 10020 3890 50  0001 C CNN
-	1    10020 3890
+P 9950 4150
+F 0 "#PWR012" H 9950 4000 50  0001 C CNN
+F 1 "+5V" V 9965 4278 50  0000 L CNN
+F 2 "" H 9950 4150 50  0001 C CNN
+F 3 "" H 9950 4150 50  0001 C CNN
+	1    9950 4150
 	0    1    1    0   
 $EndComp
-Text Label 9520 3990 2    50   ~ 0
+Text Label 9450 4250 2    50   ~ 0
 E1
-Text Label 9520 4090 2    50   ~ 0
+Text Label 9450 4350 2    50   ~ 0
 E3
-Text Label 10020 3990 0    50   ~ 0
+Text Label 9950 4250 0    50   ~ 0
 E4
-Text Label 10020 4090 0    50   ~ 0
+Text Label 9950 4350 0    50   ~ 0
 E2
-Text Label 9520 4290 2    50   ~ 0
+Text Label 9450 4550 2    50   ~ 0
 D
-Text Label 9520 4190 2    50   ~ 0
+Text Label 9450 4450 2    50   ~ 0
 COL_A4
-Text Label 9520 4390 2    50   ~ 0
+Text Label 9450 4650 2    50   ~ 0
 COL_A1
-Text Label 10020 4190 0    50   ~ 0
+Text Label 9950 4450 0    50   ~ 0
 COL_A3
-Text Label 10020 4290 0    50   ~ 0
+Text Label 9950 4550 0    50   ~ 0
 COL_A2
-Text Label 10020 4390 0    50   ~ 0
+Text Label 9950 4650 0    50   ~ 0
 COL_A0
 $Comp
 L power:GND #PWR014
 U 1 1 5EB0FD81
-P 10520 4490
-F 0 "#PWR014" H 10520 4240 50  0001 C CNN
-F 1 "GND" H 10525 4317 50  0000 C CNN
-F 2 "" H 10520 4490 50  0001 C CNN
-F 3 "" H 10520 4490 50  0001 C CNN
-	1    10520 4490
+P 10450 4750
+F 0 "#PWR014" H 10450 4500 50  0001 C CNN
+F 1 "GND" H 10455 4577 50  0000 C CNN
+F 2 "" H 10450 4750 50  0001 C CNN
+F 3 "" H 10450 4750 50  0001 C CNN
+	1    10450 4750
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	10020 4490 10520 4490
+	9950 4750 10450 4750
 $Comp
 L power:GND #PWR07
 U 1 1 5EB11DE3
-P 9140 4490
-F 0 "#PWR07" H 9140 4240 50  0001 C CNN
-F 1 "GND" H 9145 4317 50  0000 C CNN
-F 2 "" H 9140 4490 50  0001 C CNN
-F 3 "" H 9140 4490 50  0001 C CNN
-	1    9140 4490
+P 9070 4750
+F 0 "#PWR07" H 9070 4500 50  0001 C CNN
+F 1 "GND" H 9075 4577 50  0000 C CNN
+F 2 "" H 9070 4750 50  0001 C CNN
+F 3 "" H 9070 4750 50  0001 C CNN
+	1    9070 4750
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	9520 4490 9140 4490
-Text Label 10020 4590 0    50   ~ 0
+	9450 4750 9070 4750
+Text Label 9950 4850 0    50   ~ 0
 Y_R1
-Text Label 10020 4690 0    50   ~ 0
+Text Label 9950 4950 0    50   ~ 0
 Y_R2
-Text Label 10020 4790 0    50   ~ 0
+Text Label 9950 5050 0    50   ~ 0
 Y_R3
-Text Label 10020 4990 0    50   ~ 0
+Text Label 9950 5250 0    50   ~ 0
 Y_R5
-Text Label 10020 5090 0    50   ~ 0
+Text Label 9950 5350 0    50   ~ 0
 Y_R6
-Text Label 10020 5190 0    50   ~ 0
+Text Label 9950 5450 0    50   ~ 0
 Y_R7
-Text Label 10020 5290 0    50   ~ 0
+Text Label 9950 5550 0    50   ~ 0
 Y_R8
-Text Label 10020 5390 0    50   ~ 0
+Text Label 9950 5650 0    50   ~ 0
 Y_R9
-Text Label 10020 5490 0    50   ~ 0
+Text Label 9950 5750 0    50   ~ 0
 Y_R10
-Text Label 10020 5590 0    50   ~ 0
+Text Label 9950 5850 0    50   ~ 0
 Y_R11
-Text Label 10020 5690 0    50   ~ 0
+Text Label 9950 5950 0    50   ~ 0
 Y_R12
-Text Label 10020 5790 0    50   ~ 0
+Text Label 9950 6050 0    50   ~ 0
 Y_R13
-Text Label 10020 5890 0    50   ~ 0
+Text Label 9950 6150 0    50   ~ 0
 Y_R14
-Text Label 10020 5990 0    50   ~ 0
+Text Label 9950 6250 0    50   ~ 0
 Y_R15
-Text Label 10020 6090 0    50   ~ 0
+Text Label 9950 6350 0    50   ~ 0
 Y_R16
-Text Label 10020 4890 0    50   ~ 0
+Text Label 9950 5150 0    50   ~ 0
 Y_R4
-Text Label 9520 4590 2    50   ~ 0
+Text Label 9450 4850 2    50   ~ 0
 B_R1
-Text Label 9520 4890 2    50   ~ 0
+Text Label 9450 5150 2    50   ~ 0
 B_R4
-Text Label 9520 4990 2    50   ~ 0
+Text Label 9450 5250 2    50   ~ 0
 B_R5
-Text Label 9520 5290 2    50   ~ 0
+Text Label 9450 5550 2    50   ~ 0
 B_R8
-Text Label 9520 5490 2    50   ~ 0
+Text Label 9450 5750 2    50   ~ 0
 B_R10
-Text Label 9520 5590 2    50   ~ 0
+Text Label 9450 5850 2    50   ~ 0
 B_R11
-Text Label 9520 5690 2    50   ~ 0
+Text Label 9450 5950 2    50   ~ 0
 B_R12
-Text Label 9520 5790 2    50   ~ 0
+Text Label 9450 6050 2    50   ~ 0
 B_R13
-Text Label 9520 5890 2    50   ~ 0
+Text Label 9450 6150 2    50   ~ 0
 B_R14
-Text Label 9520 6090 2    50   ~ 0
+Text Label 9450 6350 2    50   ~ 0
 B_R16
-Text Label 9520 4690 2    50   ~ 0
+Text Label 9450 4950 2    50   ~ 0
 B_R2
-Text Label 9520 5990 2    50   ~ 0
+Text Label 9450 6250 2    50   ~ 0
 B_R15
-Text Label 9520 5090 2    50   ~ 0
+Text Label 9450 5350 2    50   ~ 0
 B_R6
-Text Label 9520 5190 2    50   ~ 0
+Text Label 9450 5450 2    50   ~ 0
 B_R7
-Text Label 9520 5390 2    50   ~ 0
+Text Label 9450 5650 2    50   ~ 0
 B_R9
 $Comp
 L Mechanical:MountingHole H4
@@ -190,7 +190,7 @@ U 1 1 5EB4FE35
 P 10110 1380
 F 0 "H4" H 10210 1426 50  0000 L CNN
 F 1 "MountingHole" H 10210 1335 50  0000 L CNN
-F 2 "MountingHole:MountingHole_2.7mm_Pad" H 10110 1380 50  0001 C CNN
+F 2 "Connect:1pin" H 10110 1380 50  0001 C CNN
 F 3 "~" H 10110 1380 50  0001 C CNN
 	1    10110 1380
 	1    0    0    -1  
@@ -201,20 +201,9 @@ U 1 1 5EB5038B
 P 10100 1190
 F 0 "H3" H 10200 1236 50  0000 L CNN
 F 1 "MountingHole" H 10200 1145 50  0000 L CNN
-F 2 "MountingHole:MountingHole_2.7mm_Pad" H 10100 1190 50  0001 C CNN
+F 2 "Connect:1pin" H 10100 1190 50  0001 C CNN
 F 3 "~" H 10100 1190 50  0001 C CNN
 	1    10100 1190
-	1    0    0    -1  
-$EndComp
-$Comp
-L Mechanical:MountingHole H1
-U 1 1 5EB50BEF
-P 10100 810
-F 0 "H1" H 10200 856 50  0000 L CNN
-F 1 "MountingHole" H 10200 765 50  0000 L CNN
-F 2 "MountingHole:MountingHole_2.7mm_Pad" H 10100 810 50  0001 C CNN
-F 3 "~" H 10100 810 50  0001 C CNN
-	1    10100 810 
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -223,7 +212,7 @@ U 1 1 5EB50E59
 P 10100 1000
 F 0 "H2" H 10200 1046 50  0000 L CNN
 F 1 "MountingHole" H 10200 955 50  0000 L CNN
-F 2 "MountingHole:MountingHole_2.7mm_Pad" H 10100 1000 50  0001 C CNN
+F 2 "Connect:1pin" H 10100 1000 50  0001 C CNN
 F 3 "~" H 10100 1000 50  0001 C CNN
 	1    10100 1000
 	1    0    0    -1  
@@ -231,26 +220,26 @@ $EndComp
 $Comp
 L power:PWR_FLAG #FLG02
 U 1 1 5EB61956
-P 10520 4490
-F 0 "#FLG02" H 10520 4565 50  0001 C CNN
-F 1 "PWR_FLAG" H 10520 4663 50  0000 C CNN
-F 2 "" H 10520 4490 50  0001 C CNN
-F 3 "~" H 10520 4490 50  0001 C CNN
-	1    10520 4490
+P 10450 4750
+F 0 "#FLG02" H 10450 4825 50  0001 C CNN
+F 1 "PWR_FLAG" H 10450 4923 50  0000 C CNN
+F 2 "" H 10450 4750 50  0001 C CNN
+F 3 "~" H 10450 4750 50  0001 C CNN
+	1    10450 4750
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:PWR_FLAG #FLG01
 U 1 1 5EB626AD
-P 10020 3890
-F 0 "#FLG01" H 10020 3965 50  0001 C CNN
-F 1 "PWR_FLAG" H 10020 4063 50  0001 C CNN
-F 2 "" H 10020 3890 50  0001 C CNN
-F 3 "~" H 10020 3890 50  0001 C CNN
-	1    10020 3890
+P 9950 4150
+F 0 "#FLG01" H 9950 4225 50  0001 C CNN
+F 1 "PWR_FLAG" H 9950 4323 50  0001 C CNN
+F 2 "" H 9950 4150 50  0001 C CNN
+F 3 "~" H 9950 4150 50  0001 C CNN
+	1    9950 4150
 	1    0    0    -1  
 $EndComp
-Connection ~ 10020 3890
+Connection ~ 9950 4150
 Text Label 1670 2410 0    50   ~ 0
 Y_R2
 Text Label 1670 2510 0    50   ~ 0
@@ -267,7 +256,7 @@ Text Label 1670 3010 0    50   ~ 0
 Y_R14
 Text Label 1670 3110 0    50   ~ 0
 Y_R16
-Text Label 9520 4790 2    50   ~ 0
+Text Label 9450 5050 2    50   ~ 0
 B_R3
 Text Label 1670 3410 0    50   ~ 0
 B_R2
@@ -485,15 +474,15 @@ NoConn ~ 6980 1970
 NoConn ~ 6980 2070
 Text Label 7700 2270 0    50   ~ 0
 MCP_RESET
-Text Label 9570 2700 3    50   ~ 0
+Text Label 9940 2910 0    50   ~ 0
 MCP_RESET
 Text Label 6980 1470 0    50   ~ 0
 SCL
 Text Label 6980 1370 0    50   ~ 0
 SDA
-Text Label 9670 2700 3    50   ~ 0
+Text Label 9940 2710 0    50   ~ 0
 SDA
-Text Label 9770 2700 3    50   ~ 0
+Text Label 9940 2810 0    50   ~ 0
 SCL
 NoConn ~ 5580 1770
 NoConn ~ 5580 1870
@@ -509,7 +498,7 @@ U 1 1 5ECE11A7
 P 6280 2170
 F 0 "U4" H 6260 1930 50  0000 C CNN
 F 1 "MCP23017_SP" H 6190 1760 50  0000 C CNN
-F 2 "Package_DIP:DIP-28_W7.62mm" H 6480 1170 50  0001 L CNN
+F 2 "Package_DIP:DIP-28_W7.62mm_Socket" H 6480 1170 50  0001 L CNN
 F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/20001952C.pdf" H 6480 1070 50  0001 L CNN
 	1    6280 2170
 	-1   0    0    -1  
@@ -551,10 +540,10 @@ F 3 "" H 690 4410 50  0001 C CNN
 	-1   0    0    1   
 $EndComp
 $Comp
-L Connector_Generic:Conn_02x30_Odd_Even J2
+L Connector_Generic:Conn_02x30_Odd_Even J3
 U 1 1 5EBE9602
 P 1370 3810
-F 0 "J2" H 1420 5427 50  0000 C CNN
+F 0 "J3" H 1420 5427 50  0000 C CNN
 F 1 "BROSE" H 1420 5336 50  0000 C CNN
 F 2 "Connector_IDC:IDC-Header_2x30_P2.54mm_Vertical" H 1370 3810 50  0001 C CNN
 F 3 "~" H 1370 3810 50  0001 C CNN
@@ -724,17 +713,17 @@ Text Label 1670 5210 0    50   ~ 0
 HV_E6
 Text Label 1670 5310 0    50   ~ 0
 HV_E8
-Text Label 4200 5140 0    50   ~ 0
+Text Label 4800 5140 0    50   ~ 0
 COL_A0
-Text Label 4200 5240 0    50   ~ 0
+Text Label 5370 5240 0    50   ~ 0
 COL_A1
-Text Label 4200 5340 0    50   ~ 0
+Text Label 5910 5340 0    50   ~ 0
 COL_A2
-Text Label 4200 5440 0    50   ~ 0
+Text Label 4800 5440 0    50   ~ 0
 COL_A3
-Text Label 4200 5540 0    50   ~ 0
+Text Label 5370 5540 0    50   ~ 0
 COL_A4
-Text Label 4200 5640 0    50   ~ 0
+Text Label 5910 5640 0    50   ~ 0
 D
 Text Label 2900 5640 2    50   ~ 0
 HV_D
@@ -750,7 +739,7 @@ Text Label 2900 5440 2    50   ~ 0
 HV_COL_A3
 Text Label 2900 5740 2    50   ~ 0
 HV_E1
-Text Label 5370 5740 0    50   ~ 0
+Text Label 6640 5740 0    50   ~ 0
 E1
 Text Label 4200 3230 0    50   ~ 0
 VS
@@ -769,7 +758,7 @@ F 3 "" H 3550 5540 60  0000 C CNN
 $EndComp
 Text Label 2900 5940 2    50   ~ 0
 VS
-Text Label 5370 5840 0    50   ~ 0
+Text Label 7250 5840 0    50   ~ 0
 E2
 Text Label 2900 5840 2    50   ~ 0
 HV_E2
@@ -777,15 +766,15 @@ Text Label 2900 4170 2    50   ~ 0
 HV_E3
 Text Label 2900 4270 2    50   ~ 0
 HV_E4
-Text Label 5440 4170 0    50   ~ 0
+Text Label 6040 4170 0    50   ~ 0
 E3
-Text Label 5440 4270 0    50   ~ 0
+Text Label 6600 4270 0    50   ~ 0
 E4
-Text Label 9870 2700 3    50   ~ 0
+Text Label 9940 3010 0    50   ~ 0
 E5
 Text Label 1670 4410 0    50   ~ 0
 VS
-Text Label 5440 4370 0    50   ~ 0
+Text Label 7140 4370 0    50   ~ 0
 E5
 Text Label 2900 4370 2    50   ~ 0
 HV_E5
@@ -860,17 +849,6 @@ Wire Wire Line
 	1140 6750 1140 7100
 Connection ~ 1140 6750
 $Comp
-L Connector_Generic:Conn_01x04 J1
-U 1 1 5EDD4CE8
-P 9670 2500
-F 0 "J1" V 9634 2212 50  0000 R CNN
-F 1 "Conn_01x04" V 9543 2212 50  0000 R CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 9670 2500 50  0001 C CNN
-F 3 "~" H 9670 2500 50  0001 C CNN
-	1    9670 2500
-	0    -1   -1   0   
-$EndComp
-$Comp
 L power:PWR_FLAG #FLG0101
 U 1 1 5EDD712C
 P 1780 4410
@@ -938,10 +916,6 @@ Wire Wire Line
 Wire Wire Line
 	4560 5740 4560 5990
 Wire Wire Line
-	5290 5740 5370 5740
-Wire Wire Line
-	5050 5840 5370 5840
-Wire Wire Line
 	4200 5940 4200 6310
 Wire Wire Line
 	4400 6290 4400 6310
@@ -990,10 +964,6 @@ F 3 "~" H 4880 4370 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	5330 4170 5440 4170
-Wire Wire Line
-	5440 4270 5180 4270
-Wire Wire Line
-	5440 4370 5030 4370
 $Comp
 L Device:R R4
 U 1 1 5EE1C502
@@ -1110,5 +1080,313 @@ Wire Wire Line
 Connection ~ 7200 2270
 Wire Wire Line
 	7200 2270 7400 2270
-Connection ~ 10520 4490
+Connection ~ 10450 4750
+$Comp
+L 4xxx:4049 U5
+U 1 1 5EE6D0A3
+P 4500 5140
+F 0 "U5" H 4430 5090 50  0000 C CNN
+F 1 "4049" H 4470 5170 50  0000 C CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket" H 4500 5140 50  0001 C CNN
+F 3 "http://www.intersil.com/content/dam/intersil/documents/cd40/cd4049ubms.pdf" H 4500 5140 50  0001 C CNN
+	1    4500 5140
+	-1   0    0    1   
+$EndComp
+$Comp
+L 4xxx:4049 U5
+U 2 1 5EE6EAEB
+P 5070 5240
+F 0 "U5" H 4990 5200 50  0000 C CNN
+F 1 "4049" H 5020 5280 50  0000 C CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket" H 5070 5240 50  0001 C CNN
+F 3 "http://www.intersil.com/content/dam/intersil/documents/cd40/cd4049ubms.pdf" H 5070 5240 50  0001 C CNN
+	2    5070 5240
+	-1   0    0    1   
+$EndComp
+$Comp
+L 4xxx:4049 U5
+U 3 1 5EE7C36A
+P 5610 5340
+F 0 "U5" H 5540 5300 50  0000 C CNN
+F 1 "4049" H 5570 5370 50  0000 C CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket" H 5610 5340 50  0001 C CNN
+F 3 "http://www.intersil.com/content/dam/intersil/documents/cd40/cd4049ubms.pdf" H 5610 5340 50  0001 C CNN
+	3    5610 5340
+	-1   0    0    1   
+$EndComp
+$Comp
+L 4xxx:4049 U5
+U 4 1 5EE7DAC3
+P 4500 5440
+F 0 "U5" H 4420 5400 50  0000 C CNN
+F 1 "4049" H 4470 5470 50  0000 C CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket" H 4500 5440 50  0001 C CNN
+F 3 "http://www.intersil.com/content/dam/intersil/documents/cd40/cd4049ubms.pdf" H 4500 5440 50  0001 C CNN
+	4    4500 5440
+	-1   0    0    1   
+$EndComp
+$Comp
+L 4xxx:4049 U5
+U 5 1 5EE8AABB
+P 5070 5540
+F 0 "U5" H 5000 5500 50  0000 C CNN
+F 1 "4049" H 5020 5580 50  0000 C CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket" H 5070 5540 50  0001 C CNN
+F 3 "http://www.intersil.com/content/dam/intersil/documents/cd40/cd4049ubms.pdf" H 5070 5540 50  0001 C CNN
+	5    5070 5540
+	-1   0    0    1   
+$EndComp
+$Comp
+L 4xxx:4049 U5
+U 6 1 5EE9795C
+P 5610 5640
+F 0 "U5" H 5530 5600 50  0000 C CNN
+F 1 "4049" H 5570 5670 50  0000 C CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket" H 5610 5640 50  0001 C CNN
+F 3 "http://www.intersil.com/content/dam/intersil/documents/cd40/cd4049ubms.pdf" H 5610 5640 50  0001 C CNN
+	6    5610 5640
+	-1   0    0    1   
+$EndComp
+$Comp
+L 4xxx:4049 U5
+U 7 1 5EE98DFA
+P 8700 1360
+F 0 "U5" H 8930 1406 50  0000 L CNN
+F 1 "4049" H 8930 1315 50  0000 L CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket" H 8700 1360 50  0001 C CNN
+F 3 "http://www.intersil.com/content/dam/intersil/documents/cd40/cd4049ubms.pdf" H 8700 1360 50  0001 C CNN
+	7    8700 1360
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4200 5240 4770 5240
+Wire Wire Line
+	4200 5340 5310 5340
+Wire Wire Line
+	4200 5540 4770 5540
+Wire Wire Line
+	4200 5640 5310 5640
+$Comp
+L power:+5V #PWR017
+U 1 1 5EEC6CD9
+P 8700 860
+F 0 "#PWR017" H 8700 710 50  0001 C CNN
+F 1 "+5V" V 8715 988 50  0000 L CNN
+F 2 "" H 8700 860 50  0001 C CNN
+F 3 "" H 8700 860 50  0001 C CNN
+	1    8700 860 
+	1    0    0    -1  
+$EndComp
+$Comp
+L LAWO_ESP32-rescue:GND #PWR018
+U 1 1 5EEC7846
+P 8700 1860
+F 0 "#PWR018" H 8700 1610 50  0001 C CNN
+F 1 "GND" H 8705 1687 50  0000 C CNN
+F 2 "" H 8700 1860 60  0000 C CNN
+F 3 "" H 8700 1860 60  0000 C CNN
+	1    8700 1860
+	1    0    0    -1  
+$EndComp
+$Comp
+L 4xxx:4049 U6
+U 7 1 5EEC95EE
+P 9390 1370
+F 0 "U6" H 9620 1416 50  0000 L CNN
+F 1 "4049" H 9620 1325 50  0000 L CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket" H 9390 1370 50  0001 C CNN
+F 3 "http://www.intersil.com/content/dam/intersil/documents/cd40/cd4049ubms.pdf" H 9390 1370 50  0001 C CNN
+	7    9390 1370
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR019
+U 1 1 5EECACF4
+P 9390 870
+F 0 "#PWR019" H 9390 720 50  0001 C CNN
+F 1 "+5V" V 9405 998 50  0000 L CNN
+F 2 "" H 9390 870 50  0001 C CNN
+F 3 "" H 9390 870 50  0001 C CNN
+	1    9390 870 
+	1    0    0    -1  
+$EndComp
+$Comp
+L LAWO_ESP32-rescue:GND #PWR020
+U 1 1 5EECB2E8
+P 9390 1870
+F 0 "#PWR020" H 9390 1620 50  0001 C CNN
+F 1 "GND" H 9395 1697 50  0000 C CNN
+F 2 "" H 9390 1870 60  0000 C CNN
+F 3 "" H 9390 1870 60  0000 C CNN
+	1    9390 1870
+	1    0    0    -1  
+$EndComp
+$Comp
+L 4xxx:4049 U6
+U 1 1 5EECB692
+P 6340 5740
+F 0 "U6" H 6270 5690 50  0000 C CNN
+F 1 "4049" H 6310 5770 50  0000 C CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket" H 6340 5740 50  0001 C CNN
+F 3 "http://www.intersil.com/content/dam/intersil/documents/cd40/cd4049ubms.pdf" H 6340 5740 50  0001 C CNN
+	1    6340 5740
+	-1   0    0    1   
+$EndComp
+$Comp
+L 4xxx:4049 U6
+U 2 1 5EECD033
+P 6950 5840
+F 0 "U6" H 6870 5800 50  0000 C CNN
+F 1 "4049" H 6900 5880 50  0000 C CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket" H 6950 5840 50  0001 C CNN
+F 3 "http://www.intersil.com/content/dam/intersil/documents/cd40/cd4049ubms.pdf" H 6950 5840 50  0001 C CNN
+	2    6950 5840
+	-1   0    0    1   
+$EndComp
+$Comp
+L 4xxx:4049 U6
+U 3 1 5EECE962
+P 5740 4170
+F 0 "U6" H 5670 4130 50  0000 C CNN
+F 1 "4049" H 5700 4200 50  0000 C CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket" H 5740 4170 50  0001 C CNN
+F 3 "http://www.intersil.com/content/dam/intersil/documents/cd40/cd4049ubms.pdf" H 5740 4170 50  0001 C CNN
+	3    5740 4170
+	-1   0    0    1   
+$EndComp
+$Comp
+L 4xxx:4049 U6
+U 4 1 5EED0303
+P 6300 4270
+F 0 "U6" H 6220 4230 50  0000 C CNN
+F 1 "4049" H 6270 4300 50  0000 C CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket" H 6300 4270 50  0001 C CNN
+F 3 "http://www.intersil.com/content/dam/intersil/documents/cd40/cd4049ubms.pdf" H 6300 4270 50  0001 C CNN
+	4    6300 4270
+	-1   0    0    1   
+$EndComp
+$Comp
+L 4xxx:4049 U6
+U 5 1 5EED17F7
+P 6840 4370
+F 0 "U6" H 6770 4330 50  0000 C CNN
+F 1 "4049" H 6790 4410 50  0000 C CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket" H 6840 4370 50  0001 C CNN
+F 3 "http://www.intersil.com/content/dam/intersil/documents/cd40/cd4049ubms.pdf" H 6840 4370 50  0001 C CNN
+	5    6840 4370
+	-1   0    0    1   
+$EndComp
+$Comp
+L 4xxx:4049 U6
+U 6 1 5EED2202
+P 6390 6160
+F 0 "U6" H 6310 6120 50  0000 C CNN
+F 1 "4049" H 6350 6190 50  0000 C CNN
+F 2 "Package_DIP:DIP-16_W7.62mm_Socket" H 6390 6160 50  0001 C CNN
+F 3 "http://www.intersil.com/content/dam/intersil/documents/cd40/cd4049ubms.pdf" H 6390 6160 50  0001 C CNN
+	6    6390 6160
+	-1   0    0    1   
+$EndComp
+NoConn ~ 6690 6160
+NoConn ~ 6090 6160
+Wire Wire Line
+	5290 5740 6040 5740
+Wire Wire Line
+	5050 5840 6650 5840
+Wire Wire Line
+	5180 4270 6000 4270
+Wire Wire Line
+	5030 4370 6540 4370
+$Comp
+L Connector_Generic:Conn_02x10_Odd_Even J2
+U 1 1 5EE85869
+P 9740 3010
+F 0 "J2" H 9800 2410 50  0000 C CNN
+F 1 "LAWO Controller 20p" H 9730 2330 50  0000 C CNN
+F 2 "Connector_IDC:IDC-Header_2x10_P2.54mm_Vertical" H 9740 3010 50  0001 C CNN
+F 3 "~" H 9740 3010 50  0001 C CNN
+	1    9740 3010
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:+5V #PWR021
+U 1 1 5EE96AD0
+P 9440 2510
+F 0 "#PWR021" H 9440 2360 50  0001 C CNN
+F 1 "+5V" V 9455 2638 50  0000 L CNN
+F 2 "" H 9440 2510 50  0001 C CNN
+F 3 "" H 9440 2510 50  0001 C CNN
+	1    9440 2510
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:+5V #PWR022
+U 1 1 5EE97104
+P 9940 2510
+F 0 "#PWR022" H 9940 2360 50  0001 C CNN
+F 1 "+5V" V 9955 2638 50  0000 L CNN
+F 2 "" H 9940 2510 50  0001 C CNN
+F 3 "" H 9940 2510 50  0001 C CNN
+	1    9940 2510
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR024
+U 1 1 5EE98419
+P 9940 3410
+F 0 "#PWR024" H 9940 3160 50  0001 C CNN
+F 1 "GND" H 9945 3237 50  0000 C CNN
+F 2 "" H 9940 3410 50  0001 C CNN
+F 3 "" H 9940 3410 50  0001 C CNN
+	1    9940 3410
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR023
+U 1 1 5EE98CEB
+P 9440 3410
+F 0 "#PWR023" H 9440 3160 50  0001 C CNN
+F 1 "GND" H 9445 3237 50  0000 C CNN
+F 2 "" H 9440 3410 50  0001 C CNN
+F 3 "" H 9440 3410 50  0001 C CNN
+	1    9440 3410
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9940 3310 9940 3410
+Connection ~ 9940 3410
+Wire Wire Line
+	9940 3210 9940 3310
+Connection ~ 9940 3310
+Wire Wire Line
+	9440 3310 9440 3210
+Wire Wire Line
+	9440 3210 9350 3210
+Wire Wire Line
+	9350 3210 9350 2560
+Wire Wire Line
+	9350 2560 9440 2560
+Wire Wire Line
+	9440 2560 9440 2510
+Connection ~ 9440 3210
+Connection ~ 9440 2510
+NoConn ~ 9940 3110
+NoConn ~ 9440 3110
+NoConn ~ 9440 3010
+NoConn ~ 9440 2910
+NoConn ~ 9440 2810
+NoConn ~ 9440 2710
+NoConn ~ 9440 2610
+NoConn ~ 9940 2610
+$Comp
+L Mechanical:MountingHole H1
+U 1 1 5EB50BEF
+P 10100 810
+F 0 "H1" H 10200 856 50  0000 L CNN
+F 1 "MountingHole" H 10200 765 50  0000 L CNN
+F 2 "Connect:1pin" H 10100 810 50  0001 C CNN
+F 3 "~" H 10100 810 50  0001 C CNN
+	1    10100 810 
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

@@ -56,9 +56,6 @@ NoConn ~ 10590 1670
 NoConn ~ 10590 1770
 NoConn ~ 10590 1870
 NoConn ~ 10590 1970
-NoConn ~ 10090 1670
-NoConn ~ 10090 1770
-NoConn ~ 10090 1870
 NoConn ~ 10090 1970
 NoConn ~ 14050 7100
 NoConn ~ 14050 7200
@@ -2186,6 +2183,10 @@ Wire Notes Line
 	7890 6180 8530 6180
 Wire Notes Line
 	7890 7910 8530 7910
+Text Notes 7870 8210 0    60   ~ 0
+ Low\n Side\n(Reset)
+Text Notes 8280 8210 0    60   ~ 0
+High\nSide\n(Set)
 Wire Bus Line
 	4350 6620 4350 8250
 Wire Bus Line
@@ -2194,8 +2195,10 @@ Wire Bus Line
 	11800 6350 11800 8250
 Wire Bus Line
 	12040 6600 12040 8260
-Text Notes 7870 8210 0    60   ~ 0
- Low\n Side\n(Reset)
-Text Notes 8280 8210 0    60   ~ 0
-High\nSide\n(Set)
+Text Label 10090 1670 2    60   ~ 0
+MCP_RESET
+Text Label 10090 1770 2    60   ~ 0
+SCL
+Text Label 10090 1870 2    60   ~ 0
+SDA
 $EndSCHEMATC

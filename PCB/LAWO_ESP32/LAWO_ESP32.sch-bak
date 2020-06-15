@@ -526,7 +526,7 @@ Wire Wire Line
 Wire Wire Line
 	7770 5500 7770 5450
 Wire Wire Line
-	7860 6150 7960 6150
+	7750 6150 7960 6150
 Wire Wire Line
 	7960 5350 8460 5350
 Wire Wire Line
@@ -1372,12 +1372,12 @@ $EndComp
 $Comp
 L LAWO_ESP32-rescue:GND #PWR04
 U 1 1 56B84F23
-P 7860 6150
-F 0 "#PWR04" H 7860 5900 50  0001 C CNN
-F 1 "GND" H 7860 6200 50  0000 C CNN
-F 2 "" H 7860 6150 60  0000 C CNN
-F 3 "" H 7860 6150 60  0000 C CNN
-	1    7860 6150
+P 7750 6150
+F 0 "#PWR04" H 7750 5900 50  0001 C CNN
+F 1 "GND" H 7750 6200 50  0000 C CNN
+F 2 "" H 7750 6150 60  0000 C CNN
+F 3 "" H 7750 6150 60  0000 C CNN
+	1    7750 6150
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -2176,6 +2176,16 @@ Wire Wire Line
 Connection ~ 11160 4910
 Wire Wire Line
 	11160 4910 11160 5050
+Wire Notes Line
+	7890 6180 7890 7910
+Wire Notes Line
+	8210 6180 8210 7910
+Wire Notes Line
+	8530 7910 8530 6180
+Wire Notes Line
+	7890 6180 8530 6180
+Wire Notes Line
+	7890 7910 8530 7910
 Wire Bus Line
 	4350 6620 4350 8250
 Wire Bus Line
@@ -2184,4 +2194,8 @@ Wire Bus Line
 	11800 6350 11800 8250
 Wire Bus Line
 	12040 6600 12040 8260
+Text Notes 7870 8210 0    60   ~ 0
+ Low\n Side\n(Reset)
+Text Notes 8280 8210 0    60   ~ 0
+High\nSide\n(Set)
 $EndSCHEMATC
