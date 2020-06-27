@@ -58,7 +58,7 @@ enum flipspeed {
   }
 #endif
 
-template<const uint8_t * COLUMN_LINES,const uint8_t * E_LINES,const uint8_t D, const uint8_t MCP_RESET = 0, const uint8_t LED = 0>
+template<const uint8_t * COLUMN_LINES,const uint8_t * E_LINES, const uint8_t NUM_E_LINE_PINS, const uint8_t D, const uint8_t MCP_RESET = 0, const uint8_t LED = 0>
 class LAWODisplay {
 private:
   LawoFont lawoFont;
@@ -85,7 +85,7 @@ private:
       pinMode(COLUMN_LINES[i], OUTPUT);
     }
     
-    for (uint8_t i = 0; i< sizeof(PANEL_LINES); i++) {
+    for (uint8_t i = 0; i< NUM_E_LINE_PINS; i++) {
       pinMode(E_LINES[i], OUTPUT);
     }    
     
