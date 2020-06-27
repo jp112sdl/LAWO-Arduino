@@ -611,12 +611,26 @@ public:
     memcpy(dstMap, PixelState, MATRIX_WIDTH);
   }
 
-  String dumpPixMap() {
+  String dumpPixMap(bool asIconArray = false) {
+    const uint8_t num_columns = MATRIX_WIDTH;
+    const uint8_t num_rows = MATRIX_HEIGHT;
+
+    if (asIconArray == true) {
+      String s = "";
+
+      for (uint8_t c = 0; c < num_columns; c++) {
+        if (c % 7 == 0) s+= "\n";
+          s+="0x";
+          s+= String(PixelState[c],HEX);
+          if (c < num_columns -1) s+=", ";
+      }
+      s+="\n";
+      return String(s);
+
+    } else {
     unsigned int c_len = 0;
     unsigned char i, j, k;
     uint8_t num_modules = sizeof(PANEL_LINES);
-    uint8_t num_columns = MATRIX_WIDTH;
-    uint8_t num_rows = MATRIX_HEIGHT;
     for (j = 0; j < num_modules; ++j) {
       c_len += num_columns;
     }
@@ -637,8 +651,8 @@ public:
     c[c_len] = 0;
     String s(c);
     free(c);
-
     return s;
+    }
   }
 
   uint32_t * get_dots() {
@@ -658,7 +672,7 @@ public:
     }
   }
 
-  void setPixelMap(uint32_t srcMap[MATRIX_WIDTH]) {
+  void setPixelMap(const uint32_t srcMap[MATRIX_WIDTH]) {
     for (uint8_t c = 0; c < MATRIX_WIDTH; c++) {
       for (uint8_t r = 0; r < MATRIX_HEIGHT; r++) {
         bool newPixelState = bitRead(srcMap[c],r);
