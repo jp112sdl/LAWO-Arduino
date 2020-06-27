@@ -226,8 +226,8 @@ private:
         if (currentPixelState != nextPixelState) {
         bitWrite(PixelState[c], r, nextPixelState);
 
-        selectColumn(c);
         selectRow(r, nextPixelState);
+        selectColumn(c);
         flip(c);
        }
       }
