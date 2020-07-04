@@ -391,13 +391,17 @@ public:
   void repairPixel(uint8_t col, uint8_t row) {
     uint16_t s = flipSpeedFactor;
     setFlipSpeed(FS_SLOW);
+    bool currentState = getPixelState(col, row);
     for (uint8_t i = 0; i < 20; i++) {
       drawPixel(col, row, YELLOW);
+      show();
       delay(200);
       drawPixel(col, row, BLACK);
+      show();
       delay(200);
     }
     setFlipSpeed(s);
+    drawPixel(col, row, currentState);
   }
 
   uint8_t printChar(uint8_t col_offset, uint8_t row_offset, uint8_t chr, bool state) {
