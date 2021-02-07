@@ -39,6 +39,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define FLIP_DURATION       2 // in microseconds
 #define FLIP_PAUSE_DURATION 1 // in microseconds
 
+#ifndef VIRTUAL_WIDTH
+#define VIRTUAL_WIDTH (MATRIX_WIDTH*1)
+#endif
+
 enum pxStates {
   BLACK  = 0,
   YELLOW = 1
@@ -74,8 +78,8 @@ private:
   uint8_t charSpacing;
   bool initOK;
   bool mcp_ok;
-  uint32_t PixelState[MATRIX_WIDTH];     //uint32_t 32bit represent up to 32 rows
-  uint32_t NextPixelState[MATRIX_WIDTH]; //uint32_t 32bit represent up to 32 rows
+  uint32_t PixelState[VIRTUAL_WIDTH];     //uint32_t 32bit represent up to 32 rows
+  uint32_t NextPixelState[VIRTUAL_WIDTH]; //uint32_t 32bit represent up to 32 rows
 private:
   void initPins() {
     if (MCP_RESET != 0)
@@ -218,7 +222,7 @@ private:
 
   void setPixelPhysical() {
     //unsigned long start = millis();
-    for (uint8_t c = 0; c < MATRIX_WIDTH; c++) {
+    for (uint16_t c = 0; c < VIRTUAL_WIDTH; c++) {
       for (uint8_t r = 0; r < MATRIX_HEIGHT; r++) {
         bool currentPixelState = bitRead(PixelState[c], r);
         bool nextPixelState = bitRead(NextPixelState[c], r);
@@ -226,9 +230,11 @@ private:
         if (currentPixelState != nextPixelState) {
         bitWrite(PixelState[c], r, nextPixelState);
 
-        selectRow(r, nextPixelState);
-        selectColumn(c);
-        flip(c);
+        if (c < MATRIX_WIDTH) {
+          selectRow(r, nextPixelState);
+          selectColumn(c);
+          flip(c);
+        }
        }
       }
     }
@@ -417,8 +423,6 @@ public:
 
     //Serial.print("charWidth = ");Serial.println(charWidth, DEC);
 
-
-
     for (uint8_t col = 0 ; col < charWidth; col++) {
       for (uint8_t row = 0; row < (lawoFont._fontInfo.height <= 8 ? lawoFont._fontInfo.height : 8); row++) {
 
@@ -443,13 +447,14 @@ public:
     charSpacing = s;
   }
 
-  void print(byte X, byte Y, const char * Text, bool state = YELLOW) {
+  uint16_t print(byte X, byte Y, const char * Text, bool state = YELLOW) {
     uint8_t charPos = X;
     for (uint8_t i = 0; i < strlen(Text); i++) {
       uint8_t lastCharWidth = printChar(charPos, Y, Text[i], state);
       charPos += lastCharWidth;
       charPos += charSpacing;
     }
+    return charPos;
   }
   
   void print(byte X, byte Y, String Text) {
@@ -559,26 +564,26 @@ public:
   }
 
   void moveRight(bool invert = false) {
-    uint32_t temp[MATRIX_WIDTH];
+    uint32_t temp[VIRTUAL_WIDTH];
     temp[0] = invert ? 0xffff : 0;
-    for (uint8_t c = 0; c < MATRIX_WIDTH - 1; c++) {
+    for (uint16_t c = 0; c < VIRTUAL_WIDTH - 1; c++) {
       temp[c+1] = PixelState[c];
     }
     setPixelMap(temp);
   }
 
   void moveLeft(bool invert = false) {
-    uint32_t temp[MATRIX_WIDTH];
-    temp[MATRIX_WIDTH-1] = invert ? 0xffff : 0;
-    for (uint8_t c = 0; c < MATRIX_WIDTH - 1; c++) {
+    uint32_t temp[VIRTUAL_WIDTH];
+    temp[VIRTUAL_WIDTH-1] = invert ? 0xffff : 0;
+    for (uint16_t c = 0; c < VIRTUAL_WIDTH - 1; c++) {
       temp[c] = PixelState[c+1];
     }
     setPixelMap(temp);
   }
 
   void moveUp(bool invert = false) {
-    uint32_t temp[MATRIX_WIDTH];
-    for (uint8_t c = 0; c < MATRIX_WIDTH; c++) {
+    uint32_t temp[VIRTUAL_WIDTH];
+    for (uint16_t c = 0; c < VIRTUAL_WIDTH; c++) {
       temp[c] = PixelState[c] >> 1;
       if (invert) bitSet(temp[c],15);
     }
@@ -586,8 +591,8 @@ public:
   }
 
   void moveDown(bool invert = false) {
-    uint32_t temp[MATRIX_WIDTH];
-    for (uint8_t c = 0; c < MATRIX_WIDTH; c++) {
+    uint32_t temp[VIRTUAL_WIDTH];
+    for (uint16_t c = 0; c < VIRTUAL_WIDTH; c++) {
       temp[c] = PixelState[c] << 1;
       if (invert) bitSet(temp[c],0);
     }
@@ -604,19 +609,19 @@ public:
 
   uint32_t getRow(uint8_t row) {
     uint32_t i = 0;
-    for (uint8_t c = 0; c < MATRIX_WIDTH; c++) {
+    for (uint16_t c = 0; c < VIRTUAL_WIDTH; c++) {
       i |= bitRead(PixelState[c],row)<<c;
     }
 
     return i;
   }
 
-  void getPixMap(uint32_t dstMap[MATRIX_WIDTH]) {
-    memcpy(dstMap, PixelState, MATRIX_WIDTH);
+  void getPixMap(uint32_t dstMap[VIRTUAL_WIDTH]) {
+    memcpy(dstMap, PixelState, VIRTUAL_WIDTH);
   }
 
   String dumpPixMap(bool asIconArray = false) {
-    const uint8_t num_columns = MATRIX_WIDTH;
+    const uint16_t num_columns = VIRTUAL_WIDTH;
     const uint8_t num_rows = MATRIX_HEIGHT;
 
     if (asIconArray == true) {
@@ -668,7 +673,7 @@ public:
   }
 
   void invert() {
-    for (uint8_t c = 0; c < MATRIX_WIDTH; c++) {
+    for (uint16_t c = 0; c < VIRTUAL_WIDTH; c++) {
       for (uint8_t r = 0; r < MATRIX_HEIGHT; r++) {
         bool currentPixelState = bitRead(PixelState[c],r);
         setPixel(c, r, !currentPixelState);
@@ -676,8 +681,8 @@ public:
     }
   }
 
-  void setPixelMap(const uint32_t srcMap[MATRIX_WIDTH]) {
-    for (uint8_t c = 0; c < MATRIX_WIDTH; c++) {
+  void setPixelMap(const uint32_t srcMap[VIRTUAL_WIDTH]) {
+    for (uint16_t c = 0; c < VIRTUAL_WIDTH; c++) {
       for (uint8_t r = 0; r < MATRIX_HEIGHT; r++) {
         bool newPixelState = bitRead(srcMap[c],r);
         bool currentPixelState = bitRead(PixelState[c],r);
