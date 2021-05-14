@@ -8,8 +8,8 @@ Arduino library for LAWO XY5 flipdot displays (also for GORBA and other FP2800 b
 
 | Qty	| Reference(s)	| Value |	Order No. / URL	| Supplier
 |------|------------|---------------|-------------|-------------|
-3 |	C3, C1, C4|100n|	X7R-5 100N	|reichelt
-|1|	C2	|100u	|RAD 100/25|	reichelt
+|1|	C1	|100u	|RAD 100/25|	reichelt
+|3 |	C2, C3, C4|100n|	X7R-5 100N	|reichelt
 |1|	F1	|T500mA	|RND 170-00041	|reichelt
 |1|	F1	|Fuse Holder |RND 170-00188 |reichelt
 |1|P1	|MATRIX	|WSL 50G	|reichelt
